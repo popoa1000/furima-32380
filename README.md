@@ -1,24 +1,70 @@
 # README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## userテーブル
+| Column     | Type   | Options                  |
+| --------   | ------ | -----------              |
+| nickname   | string | null:false, unique: true |
+| email      | string | null:false, unique: true |
+| password   | string | null: false              |
+| name       | string | null: false              |
+| birthday   | string | null: false              |
 
-Things you may want to cover:
+### Association
+- has_many :items
+- has_many :comments
+- has_many :buy
 
-* Ruby version
 
-* System dependencies
+## itemsテーブル
+| Column     | Type      | Options                       |
+| --------   | ------    | -----------                   |
+| product    | string    | null: false                   |
+| image      |           | null: false                   |
+| category   | text      | null: false                   |
+| condition  | text      | null: false                   |
+| charge     | integer   | null: false                   |
+| shipment   | integer   | null: false                   |
+| days       | date      | null: false                   |
+| price      | integer   | null: false                   |
+| user       | reference | null: false, foreign_key:true |
 
-* Configuration
+### Association
+- belong_to :users
+- has_many :comments
+- has_one :buy
 
-* Database creation
 
-* Database initialization
+## buyテーブル
+| Column    | Type       | Options                       |
+| --------  | ------     | -----------                   |
+| item      | references | null: false, foreign_key:true |
+| user      | references | null: false, foreign_key:true |
 
-* How to run the test suite
+### Association
+- belongs_to :users
+- belongs_to :items
+- has_one :buyer
 
-* Services (job queues, cache servers, search engines, etc.)
+## buyerテーブル
+| Column    | Type       | Options     |
+| --------  | ------     | ----------- |
+| address   | string     | null: false |
+| buy       | references | null: false |
 
-* Deployment instructions
+### Association
+- belongs_to :buy
 
-* ...
+
+
+## commentsテーブル
+| Column    | Type      | Options                        |
+| --------  | ------    | -----------                    |
+| text      | text       | null: false                   |
+| user      | references | null: false, foreign_key:true |
+| item      | references | null: false, foreign_key:true |
+
+### Association
+- belongs_to :users
+- belongs_to :items
+
