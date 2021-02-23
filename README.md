@@ -28,7 +28,7 @@
 | condition_id   | integer   | null: false                   |
 | charge_id      | integer   | null: false                   |
 | shipment_id    | integer   | null: false                   |
-| days_id        | integer   | null: false                   |
+| day_id        | integer   | null: false                   |
 | price          | integer   | null: false                   |
 | user           | reference | null: false, foreign_key:true |
 
