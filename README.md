@@ -30,7 +30,7 @@
 | shipment    | integer   | null: false                   |
 | days        | date      | null: false                   |
 | price       | integer   | null: false                   |
-| user_id     | reference | null: false, foreign_key:true |
+| user        | reference | null: false, foreign_key:true |
 
 ### Association
 - belong_to :user
