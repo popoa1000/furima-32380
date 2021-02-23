@@ -50,15 +50,15 @@
 - has_one :buyer
 
 ## buyerテーブル
-| Column       | Type       | Options                       |
-| --------     | ------     | -----------                   |
-| postal_code  | integer    | null: false                   |
-| prefecture   | integer    | null: false                   |
-| municipality | string     | null: false                   |
-| address      | string     | null: false                   |
-| building     | string     |                               |
-| phone number | integer    | null: false                   |
-| buy          | references | null: false, foreign_key:true |
+| Column        | Type       | Options                       |
+| --------      | ------     | -----------                   |
+| postal_code   | integer    | null: false                   |
+| prefecture_id | integer    | null: false                   |
+| municipality  | string     | null: false                   |
+| address       | string     | null: false                   |
+| building      | string     |                               |
+| phone number  | integer    | null: false                   |
+| buy           | references | null: false, foreign_key:true |
 
 ### Association
 - belongs_to :buy
