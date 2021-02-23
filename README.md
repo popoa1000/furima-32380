@@ -1,56 +1,64 @@
 # README
 # テーブル設計
 
-## userテーブル
-| Column     | Type   | Options                  |
-| --------   | ------ | -----------              |
-| nickname   | string | null:false, unique: true |
-| email      | string | null:false, unique: true |
-| password   | string | null: false              |
-| name       | string | null: false              |
-| birthday   | string | null: false              |
+## usersテーブル
+| Column             | Type   | Options                  |
+| --------           | ------ | -----------              |
+| nickname           | string | null:false               |
+| email              | string | null:false, unique: true |
+| encrypted_password | string | null:false               |
+| first_name         | string | null: false              |
+| last_name          | string | null: false              |
+| first_name_kana    | string | null: false              |
+| last_name_kana     | string | null: false              |
+| birthday           | date   | null: false              |
 
 ### Association
 - has_many :items
 - has_many :comments
-- has_many :buy
+- has_many :buys
 
 
 ## itemsテーブル
-| Column     | Type      | Options                       |
-| --------   | ------    | -----------                   |
-| product    | string    | null: false                   |
-| image      |           | null: false                   |
-| category   | text      | null: false                   |
-| condition  | text      | null: false                   |
-| charge     | integer   | null: false                   |
-| shipment   | integer   | null: false                   |
-| days       | date      | null: false                   |
-| price      | integer   | null: false                   |
-| user       | reference | null: false, foreign_key:true |
+| Column      | Type      | Options                       |
+| --------    | ------    | -----------                   |
+| product     | string    | null: false                   |
+| description | text      | null: false                   |
+| category    | integer   | null: false                   |
+| condition   | integer   | null: false                   |
+| charge      | integer   | null: false                   |
+| shipment    | integer   | null: false                   |
+| days        | date      | null: false                   |
+| price       | integer   | null: false                   |
+| user_id     | reference | null: false, foreign_key:true |
 
 ### Association
-- belong_to :users
+- belong_to :user
 - has_many :comments
 - has_one :buy
 
 
-## buyテーブル
+## buysテーブル
 | Column    | Type       | Options                       |
 | --------  | ------     | -----------                   |
 | item      | references | null: false, foreign_key:true |
 | user      | references | null: false, foreign_key:true |
 
 ### Association
-- belongs_to :users
-- belongs_to :items
+- belongs_to :user
+- belongs_to :item
 - has_one :buyer
 
 ## buyerテーブル
-| Column    | Type       | Options     |
-| --------  | ------     | ----------- |
-| address   | string     | null: false |
-| buy       | references | null: false |
+| Column       | Type       | Options     |
+| --------     | ------     | ----------- |
+| postal_code  | integer    | null: false |
+| prefecture   | integer    | null: false |
+| municipality | string     | null: false |
+| address      | string     | null: false |
+| building     | string     |             |
+| phone number | integer    | null: false |
+| buy_id       | references | null: false |
 
 ### Association
 - belongs_to :buy
@@ -58,11 +66,11 @@
 
 
 ## commentsテーブル
-| Column    | Type      | Options                        |
-| --------  | ------    | -----------                    |
+| Column    | Type       | Options                       |
+| --------  | ------     | -----------                   |
 | text      | text       | null: false                   |
-| user      | references | null: false, foreign_key:true |
-| item      | references | null: false, foreign_key:true |
+| user_id   | references | null: false, foreign_key:true |
+| item_id   | references | null: false, foreign_key:true |
 
 ### Association
 - belongs_to :users
