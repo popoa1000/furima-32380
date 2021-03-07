@@ -8,7 +8,7 @@ class Item < ApplicationRecord
 
   validates :product, :description, presence: true
 
-  with_options numericality: { other_than: 1 }
+  with_options numericality: { other_than: 1 }do
     validates :category, :condition, :charge, :shipment, :day
   end
 
