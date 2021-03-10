@@ -28,25 +28,50 @@ RSpec.describe Item, type: :model do
         @item.valid?
         expect(@item.errors.full_messages).to include ("Category can't be blank")
       end
+      it 'カテゴリーのidが1以下では出品できない' do
+        @item.category_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Category Select")
+      end
       it '商品状態が空では出品できない' do
         @item.condition_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include ("Condition can't be blank")
+      end
+      it '商品状態のidが1以下では出品できない' do
+        @item.condition_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Condition Select")
       end
       it '配送料の負担が空では出品できない' do
         @item.charge_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include ("Charge can't be blank")
       end
+      it '配送料の負担のidが1以下では出品できない' do
+        @item.charge_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Charge Select")
+      end
       it '発送元の地域が空では出品できない' do
         @item.shipment_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include ("Shipment can't be blank")
       end
+      it '発送元の地域のidが1以下では出品できない' do
+        @item.shipment_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Shipment Select")
+      end
       it '発送までの日数が空では出品できない' do
         @item.day_id = ""
         @item.valid?
         expect(@item.errors.full_messages).to include ("Day can't be blank")
+      end
+      it '発送までの日数のidが1以下では出品できない' do
+        @item.day_id = "1"
+        @item.valid?
+        expect(@item.errors.full_messages).to include ("Day Select")
       end
       it '価格が空では出品できない' do
         @item.price = ""
