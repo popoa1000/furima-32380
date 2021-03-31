@@ -16,7 +16,7 @@ RSpec.describe BuyerOrder, type: :model do
         expect(@buyer_order).to be_valid
       end
     end
-  
+
     context '購入がうまくいかないとき' do
       it '郵便番号が空では購入できない' do
         @buyer_order.postal_code = ''
@@ -26,22 +26,22 @@ RSpec.describe BuyerOrder, type: :model do
       it '郵便番号にハイフンがないと購入できない' do
         @buyer_order.postal_code = '1234567'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Postal code is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Postal code is invalid')
       end
       it '郵便番号が全角数字だと購入できない' do
         @buyer_order.postal_code = '１２３４５６７'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Postal code is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Postal code is invalid')
       end
       it '郵便番号が半角英数字混合だと購入できない' do
         @buyer_order.postal_code = 'l2345b7'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Postal code is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Postal code is invalid')
       end
       it '郵便番号が半角英字だと購入できない' do
         @buyer_order.postal_code = 'OlZbqSo'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Postal code is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Postal code is invalid')
       end
       it '都道府県がないと購入できない' do
         @buyer_order.shipment_id = ''
@@ -66,32 +66,32 @@ RSpec.describe BuyerOrder, type: :model do
       it '電話番号にハイフンがあると購入できない' do
         @buyer_order.phone_number = '090-1234-5678'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が全角数字だと購入できない' do
         @buyer_order.phone_number = '０１２３４５６７８９'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が半角英数字混合では購入できない' do
         @buyer_order.phone_number = 'ol2345678a'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が半角英語では購入できない' do
         @buyer_order.phone_number = 'oqolllloqbb'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が9桁以下では購入できない' do
         @buyer_order.phone_number = '090123456'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it '電話番号が12桁以上では購入できない' do
         @buyer_order.phone_number = '090123456789'
         @buyer_order.valid?
-        expect(@buyer_order.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyer_order.errors.full_messages).to include('Phone number is invalid')
       end
       it 'クレジット情報のtokenがないと購入できない' do
         @buyer_order.token = ''
