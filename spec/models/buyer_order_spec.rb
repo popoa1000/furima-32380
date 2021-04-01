@@ -51,6 +51,11 @@ RSpec.describe BuyerOrder, type: :model do
         @buyer_order.valid?
         expect(@buyer_order.errors.full_messages).to include("Shipment can't be blank")
       end
+      it '都道府県が1だと購入できない' do
+        @buyer_order.shipment_id = 1
+        @buyer_order.valid?
+        expect(@buyer_order.errors.full_messages).to include("Shipment Select")
+      end
       it '市区町村がないと購入できない' do
         @buyer_order.municipality = ''
         @buyer_order.valid?
