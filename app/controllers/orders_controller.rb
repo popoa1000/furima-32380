@@ -7,10 +7,6 @@ class OrdersController < ApplicationController
     @buyer_order = BuyerOrder.new
   end
 
-  def new
-    @buyer_order = BuyerOrder.new
-  end
-
   def create
     @item = Item.find(params[:item_id])
     @buyer_order = BuyerOrder.new(order_params)
