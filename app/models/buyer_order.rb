@@ -7,7 +7,7 @@ class BuyerOrder
     validates :postal_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/ }
     validates :shipment_id, numericality: { other_than: 1, message: 'Select' }
     validates :phone_number, format: { with: /\A[0-9]{10,11}\z/ }
-    validates :municipality, :address, :token
+    validates :municipality, :address, :token, :user_id, :item_id
   end
 
   def save
