@@ -106,6 +106,16 @@ RSpec.describe BuyerOrder, type: :model do
         @buyer_order.valid?
         expect(@buyer_order.errors.full_messages).to include("Token can't be blank")
       end
+      it 'user_idがないと購入できない' do
+        @buyer_order.user_id = ''
+        @buyer_order.valid?
+        expect(@buyer_order.errors.full_messages).to include("User can't be blank")
+      end
+      it 'item_idがないと購入できない' do
+        @buyer_order.item_id = ''
+        @buyer_order.valid?
+        expect(@buyer_order.errors.full_messages).to include("Item can't be blank")
+      end
     end
   end
 end
